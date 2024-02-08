@@ -4,7 +4,7 @@ layout: default
 title:  "You've Got to Feel It To Believe It: Multi-Modal Bayesian Inference for Semantic and Property Prediction"
 date:   2024-02-08 13:24:00 -0400
 description: >- # Supports markdown
-  This is the project page for the submitted paper
+  Using multiple sensing modalities improves semantic predictions and enables complex task completion.
 show-description: true
 
 # Add page-specifi mathjax functionality. Manage global setting in _config.yml
@@ -23,37 +23,30 @@ image:
 # Only the first author is supported by twitter metadata
 authors:
   - name: Parker Ewen
-    footnotes: 1
     url: https://parkerewen.com
     email: pewen@umich.edu
   - name: Hao Chen
-    footnotes: 1
     email: haochern@umich.edu
   - name: Yuzhen Chen
-    footnotes: 1
     email: yuzhench@umich.edu
   - name: Anran Li
-    footnotes: 1
     email: anranli@umich.edu
   - name: Anup Bagali
-    footnotes: 1
     email: abagali@umich.edu
   - name: Gitesh Gunjal
-    footnotes: 1
     email: gitesh@umich.edu
   - name: Ram Vasudevan
-    footnotes: 1
     email: ramv@umich.edu
 
 # If you just want a general footnote, you can do that too.
 # See the sel_map and armour-dev examples.
 author-footnotes:
-  1: All authors affiliated with the Robotics Institute and department of Mechanical Engineering of the University of Michigan, Ann Arbor.
+  All authors affiliated with the Robotics Institute and department of Mechanical Engineering of the University of Michigan, Ann Arbor.
 
 links:
   - icon: arxiv
     icon-library: simpleicons
-    text: Arxiv HP
+    text: arXiv
     url: https://arxiv.org/
   - icon: github
     icon-library: simpleicons
@@ -127,97 +120,59 @@ For hardware demonstrations, static friction measurements are taken using a forc
 
 
 <div markdown="1" class="content-block grey justify">
-# Results
+# Simulation Results
 
 We validate our approach in simulation and demonstrate property measurements improve semantic predictions.
 We use 1800 images and ground-truth semantic labels taken from the testing set of the [Dense Material Segmentation Dataset](https://github.com/apple/ml-dms-dataset) and a pre-trained semantic segmentation neural network is used to predict semantic labels.
 Misclassified pixels in each image are randomly selected and a friction measurement is drawn from a Gaussian distribution using the corresponding ground-truth semantic label.
 
-![Simulation results for multi-modal mapping](blob:null/e3c653b9-1dfb-4652-b5a5-4c3aec67a1eb "Simulation Results")
+![Simulation results for multi-modal mapping](https://raw.githubusercontent.com/ParkerEwen5441/github.io-multimodal_mapping/main/web_elements/sim_results.png "Simulation Results")
+
+Results for a single simulated experiment are shown above.
+The image (a) and ground truth semantic labels (b) are from the Dense Material Segmentation Dataset. The semantic segmentation predictions (c) do not classify parts of the desk as wood.
+The method of moments then computes the correct posterior semantic label (d).
+
+The mean pixel-wise accuracy of the semantic segmentation network over this dataset without applying the proposed algorithm is 27.2\%.
+The mean pixel accuracy of the posterior semantic predictions output by Algorithm \ref{alg:moments} is 33.0\%, an increase of 21.3\%, demonstrating increased semantic prediction performance compared to semantic predictions using vision alone.
+This experiment highlights that by conditioning semantic classifications on physical properties, one can generally improve the accuracy of visual semantic classifications.
 
 </div>
 
-<div markdown="1" class="fullwidth">
-![Alt Text](https://cdn.pixabay.com/photo/2019/09/05/01/11/mountainous-landscape-4452844_1280.jpg "Random Image")
-</div>
+# Hardware Demonstrations
 
-## And this is how we can get the image closer
+We further validate our method on several hardware demonstrations and compare against existing semantic mapping and property estimation approaches.
 
-<div markdown="1" class="no-pre">
-![Alt Text](https://cdn.pixabay.com/photo/2019/09/05/01/11/mountainous-landscape-4452844_1280.jpg "Random Image")
-</div>
+The end-effector of a Kinova Gen 3 robotic arm and a Spot Arm are used to collect friction measurements using built-in wrist-mounted force-torque sensors.
+For this experiment, 5 frames from the RGB-D stream are used to initialize the semantic TSDF map.
+Each RGB-D image is semantically segmented using the trained network and projected into the global coordinate frame using the aligned depth image.
+The recursive vision-based semantic update is applied for each semantic point cloud.
+This initializes the Dirichlet parameters used to compute the initial semantic classification weights for the measurement likelihood.
 
-Lorem ipsum dolor sit amet Consectetur adipiscing elit Integer molestie lorem at massa.
+![Hardware demonstrations for multi-modal mapping](https://raw.githubusercontent.com/ParkerEwen5441/github.io-multimodal_mapping/main/web_elements/hardware_results.png "Hardware Demonstrations")
 
-<div markdown="1" class="cabin">
-It's also possible to specify a new font for a specific section
-</div>
+We compare our approach to the recursive semantic mapping approach of [selmap](https://github.com/roahmlab/sel_map) which only uses vision.
+The same SegFormer-FastSAM semantic segmentation network is used for both methods.
+As shown in in the above demonstration, the network incorrectly classifies various objects in the scenes.
+When only vision-based semantic classifications are considered, the erroneous predictions from the network are unable to be corrected by selmap.
+Using the proposed method, a user specifies the location for friction measurements to be taken.
+The method of moments then computes the posterior semantic classification weights using the friction measurements as input.
+This corrects the expected semantic classification.
+We ran the experiment on two indoor scenes with two friction measurements each and show the semantic prediction accuracy increases using the proposed method and matches the ground-truth semantic labels.
 
-<div markdown="1" class="jp">
-## See? 1
-</div>
-
-And you can also <span class="cabin">change it in the middle</span>, though that's a bit more problematic for other reasons.
-
-To specify fonts, just use Google Fonts and update `_data/fonts.yml`.
-Any fonts you add as extra fonts at the bottom become usable fonts in the body of the post.
-
-There are also tools to grab icons from other repos.
-Just use the following:
-{% include util/icons icon='github' icon-library='simpleicons' -%}
-, and you'll be able to add icons from any library you have enabled that is supported.
-
-This uses the liquid template engine for importing.
-If you include the - at the start of end of such a line, it say to discard all whitespace before or after.
-In order to keep the comma there, we added the -.
-This is what happens:
-{% include util/icons icon='github' icon-library='simpleicons' %}
-, when you don't have it (notice the space).
-
-And if you have mathjax enabled in `_config.yml` or in the Front Matter as it is here, you can even add latex:
-
-$$
-\begin{align*}
-  & \phi(x,y) = \phi \left(\sum_{i=1}^n x_ie_i, \sum_{j=1}^n y_je_j \right)
-  = \sum_{i=1}^n \sum_{j=1}^n x_i y_j \phi(e_i, e_j) = \\
-  & (x_1, \ldots, x_n) \left( \begin{array}{ccc}
-      \phi(e_1, e_1) & \cdots & \phi(e_1, e_n) \\
-      \vdots & \ddots & \vdots \\
-      \phi(e_n, e_1) & \cdots & \phi(e_n, e_n)
-    \end{array} \right)
-  \left( \begin{array}{c}
-      y_1 \\
-      \vdots \\
-      y_n
-    \end{array} \right)
-\end{align*}
-$$
-
-You can also treat a section of text as a block, and use kramdown's block attribution methods to change fonts.
-You can see at the end of this section in the markdown that I do just that
-{: class="cabin"}
-
-<div markdown="1" class="content-block grey justify">
-# This is a really long heading block so I can see if justify breaks the heading, and make sure that headings don't get justify unless they are explicitly classed with justify like the following heading
-
-# This is the following really long heading block so I can see if justify breaks the heading, and make sure that only this heading is justified because it has the explicit tag
-{: class="justify"}
-</div>
+We demonstrate the utility of our proposed property estimation method using a case study involving a challenging legged locomotion traversal task of crossing an icy surface and, likewise, on a case study for affordance-based property estimation.
+These two case studies are presented in the above video.
 
 <div markdown="1" class="content-block grey justify">
 # Citation
 
-*Insert whatever message*
+This project was developed in [Robotics and Optimization for Analysis of Human Motion (ROAHM) Lab](http://www.roahmlab.com/) at University of Michigan - Ann Arbor.
 
 ```bibtex
-@article{nash51,
-  author  = "Nash, John",
-  title   = "Non-cooperative Games",
-  journal = "Annals of Mathematics",
-  year    = 1951,
-  volume  = "54",
-  number  = "2",
-  pages   = "286--295"
+@article{ewen2024feelit,
+  author  = "Ewen, Parker and Chen, Hao and Chen, Yuzhen and Li, Anran and Bagali, Anup and Gunjal, Gitesh and Vasudevan, Ram",
+  title   = "You've Got to Feel It To Believe It: Multi-Modal Bayesian Inference for Semantic and Property Prediction",
+  journal = "arXiv",
+  year    = 2024
 }
 ```
 </div>
