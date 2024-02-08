@@ -97,19 +97,45 @@ The efficacy of the proposed algorithm is demonstrated through several hardware 
 In particular, this paper illustrates that by conditioning semantic classifications on physical properties, the proposed method quantitatively  outperforms state-of-the-art semantic classification methods that rely on vision alone.
 To further illustrate its utility, the proposed method is used in several applications including to represent affordance-based properties probabilistically and a challenging terrain traversal task using a legged robot.
 In the latter task, the proposed method represents the coefficient of friction of the terrain probabilistically, which enables the use of an on-line risk-aware planner that switches the legged robot from a dynamic gait to a static, stable gait when the expected value of the coefficient of friction falls below a given threshold.
-Videos of these case studies are presented in the multimedia attachment.
+Videos of these case studies are shown above.
 
+<p align="center">
+<img src="https://raw.githubusercontent.com/ParkerEwen5441/github.io-multimodal_mapping/main/web_elements/pitch.png" class="img-responsive" alt="" width="500" height="500">
+</p>
 
-![Alt Text](https://cdn.pixabay.com/photo/2019/09/05/01/11/mountainous-landscape-4452844_1280.jpg "Random Image")
+The method proposed in this paper jointly estimates semantic classifications and physical properties by combining visual and tactile data into a single semantic mapping framework. 
+RGB-D images are used to build a metric-semantic map that iteratively estimates semantic labels. 
+A property measurement is taken which in turn updates both the semantic class predictions and physical property estimates. 
+In the depicted example, the robot is unsure if the terrain in front of it is snow or ice from vision measurements alone (prior estimates) which dramatically affects the coefficient of friction and the associated gait that can be applied to safely traverse the terrain.
+The robot uses a tactile sensor attached to its manipulator to update its coefficient of friction estimation (posterior estimates), which then enables it to change gaits to cross the ice safely.
 </div>
 
-# Topic outside of content block
+# Method
 
-![Alt Text](https://cdn.pixabay.com/photo/2019/09/05/01/11/mountainous-landscape-4452844_1280.jpg "Random Image")
+A flow diagram illustrating our proposed mutli-modal mapping algorithm.
+A semantic classification algorithm predicts pixel-wise classes from RGB images that are then projected into a common mapping frame using the aligned depth image, camera intrinsics, and estimated camera pose. 
+This semantic point cloud is used to build a metric-semantic map. 
+When a property measurement is taken, the method of moments is used to update the semantic and property estimates jointly.
 
-Lorem ipsum dolor sit amet Consectetur adipiscing elit Integer molestie lorem at massa.
+![Flow diagram for multi-modal mapping](https://raw.githubusercontent.com/ParkerEwen5441/github.io-multimodal_mapping/main/web_elements/RSS_flow_diagram_updated.jpeg "Flow Diagram")
 
-## This is how we can get the image at 100%
+We use a custom implementation of the [SegFormer network](https://github.com/NVlabs/SegFormer) trained on the [Dense Material Segmentation Dataset](https://github.com/apple/ml-dms-dataset).
+The output of the network is then post-processed with a segment-based voting scheme using [FastSAM](https://github.com/CASIA-IVA-Lab/FastSAM).
+When a property measurement is taken, the method of moments updates a region of the geometric representation segmented using FastSAM.
+This incentivizes regions with spatial proximity and visual similarity to be updated using a single measurement rather than requiring one measurement for each voxel, making the algorithm more efficient. 
+For hardware demonstrations, static friction measurements are taken using a force-torque sensor which measures contact forces during the motion of an end-effector against a surface.
+
+
+<div markdown="1" class="content-block grey justify">
+# Results
+
+We validate our approach in simulation and demonstrate property measurements improve semantic predictions.
+We use 1800 images and ground-truth semantic labels taken from the testing set of the [Dense Material Segmentation Dataset](https://github.com/apple/ml-dms-dataset) and a pre-trained semantic segmentation neural network is used to predict semantic labels.
+Misclassified pixels in each image are randomly selected and a friction measurement is drawn from a Gaussian distribution using the corresponding ground-truth semantic label.
+
+![Simulation results for multi-modal mapping](blob:null/e3c653b9-1dfb-4652-b5a5-4c3aec67a1eb "Simulation Results")
+
+</div>
 
 <div markdown="1" class="fullwidth">
 ![Alt Text](https://cdn.pixabay.com/photo/2019/09/05/01/11/mountainous-landscape-4452844_1280.jpg "Random Image")
