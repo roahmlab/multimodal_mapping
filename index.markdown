@@ -79,7 +79,12 @@ If you don't include `markdown="1"` it will fail to render any markdown inside.
 
 You can also make fullwidth embeds (this doesn't actually link to any video)
 <div class="fullwidth">
-<video controls="" style="background-color:black;width:100%;height:auto;aspect-ratio:16/9;"></video>
+
+
+<video controls="" width="100%">
+    <source src="https://github.com/ParkerEwen5441/github.io-multimodal_mapping/assets/48282126/bb4d10af-1db5-4dc7-bfc1-bc8a6cdf3bda">
+</video>
+
 </div>
 
 <div markdown="1" class="content-block grey justify">
