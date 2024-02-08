@@ -1,10 +1,10 @@
 ---
 # Front matter. This is where you specify a lot of page variables.
 layout: default
-title:  "Example Page"
-date:   2023-06-16 03:03:01 -0400
+title:  "You've Got to Feel It To Believe It: Multi-Modal Bayesian Inference for Semantic and Property Prediction"
+date:   2024-02-08 13:24:00 -0400
 description: >- # Supports markdown
-  This is the main project page and the page used to demonstrate how this works with all of the options for the Front Matter present
+  This is the project page for the submitted paper
 show-description: true
 
 # Add page-specifi mathjax functionality. Manage global setting in _config.yml
@@ -22,46 +22,43 @@ image:
 
 # Only the first author is supported by twitter metadata
 authors:
-  - name: Someone
+  - name: Parker Ewen
     footnotes: 1
-  - name: Adam Li
-    url: https://buildingatom.io
-    email: person [at] example.edu
-    mailto: person@example.edu
-    footnotes: 2
-  - name: Person 3
-    email: someemail@example.com
-    footnotes: 3
-  - name: Guy 4
-    mailto: combined@example.com
-    footnotes: 3
-  - name: Another Person
+    url: https://parkerewen.com
+    email: pewen@umich.edu
+  - name: Hao Chen
+    footnotes: 1
+    email: haochern@umich.edu
+  - name: Yuzhen Chen
+    footnotes: 1
+    email: yuzhench@umich.edu
+  - name: Anran Li
+    footnotes: 1
+    email: anranli@umich.edu
+  - name: Anup Bagali
+    footnotes: 1
+    email: abagali@umich.edu
+  - name: Gitesh Gunjal
+    footnotes: 1
+    email: gitesh@umich.edu
+  - name: Ram Vasudevan
+    footnotes: 1
+    email: ramv@umich.edu
 
 # If you just want a general footnote, you can do that too.
 # See the sel_map and armour-dev examples.
 author-footnotes:
-  1: >- # Supports markdown
-    You can add random extra footnotes
-  2: And include websites or emails which are detached from their mailto
-  3: You can also just specify the email and not have a mailto, or if there's a mailto you want to use, you can specify only that
+  1: All authors affiliated with the Robotics Institute and department of Mechanical Engineering of the University of Michigan, Ann Arbor.
 
 links:
   - icon: arxiv
     icon-library: simpleicons
     text: Arxiv HP
     url: https://arxiv.org/
-  - icon: bi-map
-    icon-library: bootstrap-icons
-    text: SEL_Map Ex.
-    url: /project-pages/sel_map
-  - icon: bi-bezier2
-    icon-library: bootstrap-icons
-    text: ARMOUR Ex.
-    url: /project-pages/armour-dev
   - icon: github
     icon-library: simpleicons
     text: Code
-    url: https://github.com/BuildingAtom/project-pages
+    url: https://github.com/roahmlab
 
 # End Front Matter
 ---
@@ -69,22 +66,6 @@ links:
 {% include sections/authors %}
 {% include sections/links %}
 
-# Section Break
----
-
-# As you can see, the authors and link are just includes
-
-In other words, I can actually move them wherever I want, or place them here again.
-The data is provided by the front matter.
-Let's try flipping the order.
-
-{% include sections/links %}
-{% include sections/authors %}
-
----
-
-There is quite a bit of flexibility to how you structure the text too.
-Here, I'm going to make a justified grey content block with the heading outside.
 
 # [Content](#content)
 <div markdown="1" class="content-block grey justify no-pre">
