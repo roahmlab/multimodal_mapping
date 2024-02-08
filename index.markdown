@@ -67,7 +67,7 @@ links:
 {% include sections/links %}
 
 
-# [Content](#content)
+<!-- # [Content](#content)
 <div markdown="1" class="content-block grey justify no-pre">
 some text
 
@@ -78,19 +78,27 @@ I made this look right by adding the `no-pre` class.
 If you don't include `markdown="1"` it will fail to render any markdown inside.
 
 You can also make fullwidth embeds (this doesn't actually link to any video)
+ -->
+# Demo Video
 <div class="fullwidth">
-
-
 <video controls="" width="100%">
     <source src="https://github.com/ParkerEwen5441/github.io-multimodal_mapping/assets/48282126/bb4d10af-1db5-4dc7-bfc1-bc8a6cdf3bda">
 </video>
-
 </div>
 
 <div markdown="1" class="content-block grey justify">
-# Topic inside of the content block
+# Abstract
 
-Lorem ipsum dolor sit amet Consectetur adipiscing elit Integer molestie lorem at massa.
+Robots must be able to understand their surroundings to perform complex tasks in challenging environments and many of these complex tasks require estimates of physical properties such as friction or weight.
+Estimating such properties using learning is challenging due to the large amounts of labelled data required for training and the difficulty of updating these learned models online at run time.
+To overcome these challenges, this paper introduces a novel, multi-modal approach for representing semantic predictions and physical property estimates jointly in a probabilistic manner.
+By using conjugate pairs, the proposed method enables closed-form Bayesian updates given visual and tactile measurements without requiring additional training data.
+The efficacy of the proposed algorithm is demonstrated through several hardware experiments. 
+In particular, this paper illustrates that by conditioning semantic classifications on physical properties, the proposed method quantitatively  outperforms state-of-the-art semantic classification methods that rely on vision alone.
+To further illustrate its utility, the proposed method is used in several applications including to represent affordance-based properties probabilistically and a challenging terrain traversal task using a legged robot.
+In the latter task, the proposed method represents the coefficient of friction of the terrain probabilistically, which enables the use of an on-line risk-aware planner that switches the legged robot from a dynamic gait to a static, stable gait when the expected value of the coefficient of friction falls below a given threshold.
+Videos of these case studies are presented in the multimedia attachment.
+
 
 ![Alt Text](https://cdn.pixabay.com/photo/2019/09/05/01/11/mountainous-landscape-4452844_1280.jpg "Random Image")
 </div>
