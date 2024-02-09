@@ -14,7 +14,6 @@ remote_theme: BuildingAtom/project-pages@v1.2-theme
 # Metadata and SEO-helper stuff
 # This title here should correspond to your base site or as a shared title
 title: You've Got to Feel It To Believe It Multi-Modal Bayesian Inference for Semantic and Property Prediction
-# baseurl: "/multimodal_mapping" # the subpath of your site, e.g. /blog
 url: "https://ParkerEwen5441.github.io/multimodal_mapping" # the base hostname & protocol for your site, e.g. http://example.com
 baseurl: ""   # the subpath of your site, e.g. /blog
 # This sets window title, not the title you read on the page
