@@ -15,7 +15,7 @@ autoanchor: true
 
 # Preview image for social media cards
 image:
-  path: https://cdn.pixabay.com/photo/2019/09/05/01/11/mountainous-landscape-4452844_1280.jpg
+  path: https://raw.githubusercontent.com/ParkerEwen5441/github.io-multimodal_mapping/main/web_elements/pitch.png
   height: 100
   width: 256
   alt: Random Landscape
@@ -47,11 +47,11 @@ links:
   - icon: arxiv
     icon-library: simpleicons
     text: arXiv
-    url: https://arxiv.org/
+    url: https://arxiv.org/abs/2402.05872
   - icon: github
     icon-library: simpleicons
     text: Code
-    url: https://github.com/roahmlab
+    url: https://github.com/ParkerEwen5441/KinfuROS
 
 # End Front Matter
 ---
