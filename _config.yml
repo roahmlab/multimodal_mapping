@@ -16,6 +16,7 @@ remote_theme: BuildingAtom/project-pages@v1.2-theme
 title: You've Got to Feel It To Believe It Multi-Modal Bayesian Inference for Semantic and Property Prediction
 # baseurl: "/multimodal_mapping" # the subpath of your site, e.g. /blog
 url: "https://ParkerEwen5441.github.io/multimodal_mapping" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: ""   # the subpath of your site, e.g. /blog
 # This sets window title, not the title you read on the page
 title-format: page-site # options are page-site, page, site.
 lang: en
@@ -28,20 +29,20 @@ credit:
     built by Adam Li / [@BuildingAtom](https://www.github.com/BuildingAtom)
 
 # Hide the credits in the footer by setting this false.
-show-credit: true
+show-credit: false
 
 # Disable the footer by just setting the above false AND making the below blank
-footer:
-  connections-pre: # This prefixes the connections section at the botom.
-  connections-post: Socials
-  connections:
-    github:  https://github.com/ParkerEwen5441
-  related-sites:
-    sites:
-      - text: Semantic Elevation Mapping
-        href: /project-pages/sel_map
-        icon: bi-box-arrow-left
-        icon-library: bootstrap-icons
+# footer:
+  # connections-pre: # This prefixes the connections section at the botom.
+  # connections-post: Socials
+  # connections:
+  #   github:  https://github.com/ParkerEwen5441
+  # related-sites:
+  #   sites:
+  #     - text: Semantic Elevation Mapping
+  #       href: /project-pages/sel_map
+  #       icon: bi-box-arrow-left
+  #       icon-library: bootstrap-icons
 
 # Only leave the icon libraries you want to use enabled.
 # The supported libraries are:
@@ -50,15 +51,15 @@ footer:
 # ionicons, feathericons, academicons
 #
 # simpleicons doesn't require any extra loading.
-icon-libraries:
-  - bootstrap-icons
+# icon-libraries:
+#   - bootstrap-icons
 
 # Keep mathjax disabled because it's a bit expensive. (Disabled by default)
 # You can enable this on a page-by-page basis, if you somehow are using mutliple pages.
-mathjax: false
+# mathjax: false
 
 # Code highlighter
-highlighter: rouge
+# highlighter: rouge
 
 # There is room for extra SEO shenanigans. jekyll-seo-tag is included,
 # so check out that repo to see what you can do.
