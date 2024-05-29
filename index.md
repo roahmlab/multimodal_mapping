@@ -171,7 +171,7 @@ This project was developed in [Robotics and Optimization for Analysis of Human M
 @article{ewen2024feelit,
   author  = "Ewen, Parker and Chen, Hao and Chen, Yuzhen and Li, Anran and Bagali, Anup and Gunjal, Gitesh and Vasudevan, Ram",
   title   = "You've Got to Feel It To Believe It: Multi-Modal Bayesian Inference for Semantic and Property Prediction",
-  journal = "arXiv",
+  journal = "Robotics: Science and Systems",
   year    = 2024
 }
 ```
